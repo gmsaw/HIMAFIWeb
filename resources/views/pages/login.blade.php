@@ -203,7 +203,7 @@
         >
         <!-- Overlay gradient untuk keterbacaan -->
         <div class="absolute inset-0 bg-black/60"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+        <div class="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/40"></div>
     </div>
     
     <div class="container mx-auto px-4 relative z-10 py-8">
@@ -211,7 +211,7 @@
             <!-- Login Container -->
             <div class="login-container">
                 <!-- Header -->
-                <div class="bg-gradient-to-r from-cyan-600 to-blue-600 p-8 text-white text-center">
+                <div class="bg-linear-to-r from-cyan-600 to-blue-600 p-8 text-white text-center">
                     <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-user-lock text-3xl"></i>
                     </div>

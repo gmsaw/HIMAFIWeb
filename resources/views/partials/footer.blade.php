@@ -39,7 +39,7 @@
                     <ul class="space-y-5">
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt text-cyan-400 mt-1 mr-4 text-lg"></i>
-                            <span class="text-gray-300">Gedung Student Center Lt. 2, Fakultas MIPA<br>Universitas Udayana, Bukit Jimbaran, Bali</span>
+                            <span class="text-gray-300">Jl. Raya Kampus Unud, Bukit Jimbaran, Bali</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-phone text-cyan-400 mr-4 text-lg"></i>
@@ -47,11 +47,11 @@
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-envelope text-cyan-400 mr-4 text-lg"></i>
-                            <span class="text-gray-300">sekretariat@himafi.unud.ac.id</span>
+                            <span class="text-gray-300">himafiunud@gmail.com</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-clock text-cyan-400 mr-4 text-lg"></i>
-                            <span class="text-gray-300">Senin - Jumat: 09.00 - 16.00 WITA</span>
+                            <span class="text-gray-300">Senin - Jumat: 08.00 - 16.00 WITA</span>
                         </li>
                     </ul>
                 </div>
@@ -68,21 +68,12 @@
                         <a href="#" class="text-gray-300 hover:text-cyan-300 transition py-2">Lowongan Magang</a>
                     </div>
 
-                    <div class="bg-blue-900/30 p-6 rounded-2xl border border-blue-800/50">
-                        <h5 class="font-bold text-lg mb-3">Berlangganan Newsletter</h5>
-                        <p class="text-sm text-gray-300 mb-4">Dapatkan info kegiatan dan beasiswa langsung ke email Anda.</p>
-                        <div class="flex">
-                            <input type="email" placeholder="Email Anda" class="flex bg-blue-800/50 border border-blue-700 text-white px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                            <button class="bg-linear-to-r from-cyan-500 to-blue-500 px-5 rounded-r-lg font-semibold hover:opacity-90 transition">Kirim</button>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <!-- Copyright -->
             <div class="pt-8 mt-8 border-t border-blue-900 text-center text-gray-400 text-sm">
-                <p>Copyright © 2025 - 2026 <strong class="text-cyan-300">Himpunan Mahasiswa Fisika Universitas Udayana</strong>. Seluruh hak cipta dilindungi undang-undang.</p>
-                <p class="mt-2">Dikembangkan dengan <i class="fas fa-heart text-red-400 mx-1"></i> oleh Divisi Teknologi Informasi Kabinet Arunika Swakarsa.</p>
+                <p>Copyright © 2026 <strong class="text-cyan-300">Himpunan Mahasiswa Fisika Universitas Udayana</strong>. Seluruh hak cipta dilindungi undang-undang.</p>
             </div>
         </div>
     </footer>

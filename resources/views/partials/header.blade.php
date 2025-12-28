@@ -17,9 +17,9 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-6 lg:space-x-8">
                 <a href="/" class="font-semibold text-white hover:text-white border-b-2 border-cyan-300 pb-1 transition-colors duration-200">Beranda</a>
-                <a href="#" class="font-medium text-white/90 hover:text-white transition-colors duration-200">Fungsionaris</a>
+                <a href="/fungsionaris" class="font-medium text-white/90 hover:text-white transition-colors duration-200">Fungsionaris</a>
                 <a href="#" class="font-medium text-white/90 hover:text-white transition-colors duration-200">Program Kerja</a>
-                <a href="#" class="font-medium text-white/90 hover:text-white transition-colors duration-200">Artikel</a>
+                <a href="/artikel" class="font-medium text-white/90 hover:text-white transition-colors duration-200">Artikel</a>
                 <a href="/login" class="bg-linear-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 text-sm lg:text-base">Masuk</a>
             </nav>
 

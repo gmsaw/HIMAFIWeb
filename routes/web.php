@@ -1,17 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VideoController;
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+// Homepage
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', function () {
     return view('pages.login');
 });
 
-Route::get('/profilevideo', function () {
-    return view('pages.profilevideo');
+// Video Profile
+Route::get('/video-profile', [VideoController::class, 'index'])->name('profile.video');
+
+Route::get('/fungsionaris', function () {
+    return view('pages.fungsionaris');
+});
+
+Route::get('/artikel', function () {
+    return view('pages.artikel');
+});
+
+Route::get('/artikel/view', function () {
+    return view('pages.artikelView');
+});
+
+Route::get('/perpustakaan', function () {
+    return view('pages.perpus');
 });
 
 Route::get('/aspirasi', function () {

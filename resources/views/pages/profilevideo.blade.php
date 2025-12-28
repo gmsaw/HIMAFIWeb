@@ -1,88 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Profil - HIMAFI UNUD Kabinet Arunika Swakarsa</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.jpg">
-    <!-- Ikon untuk menu burger (dari Font Awesome via CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Tambahkan kelas gradient yang digunakan di kode asli */
-        .bg-linear-to-r {
-            background-image: linear-gradient(to right, var(--tw-gradient-stops));
-        }
-        .bg-linear-to-t {
-            background-image: linear-gradient(to top, var(--tw-gradient-stops));
-        }
-        .bg-linear-to-br {
-            background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
-        }
-        .bg-linear-to-b {
-            background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-        }
-        
-        #mainHeader {
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
-        }
-        
-        #mainHeader.scrolled {
-            backdrop-filter: blur(0);
-            -webkit-backdrop-filter: blur(0);
-        }
-        
-        /* Smooth transition untuk semua elemen header */
-        #mainHeader * {
-            transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-        }
-        
-        /* Custom styles untuk video player */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 1rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .video-container iframe,
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #0891b2, #2563eb);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #0e7490, #1d4ed8);
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800">
-    @include('layout.header')
+@extends('layouts.app')
 
+@section('title', 'Video Profil - HIMAFI UNUD Kabinet Arunika Swakarsa')
+
+@section('content')
     <!-- Hero Section untuk Video -->
     <section class="relative w-full min-h-[40vh] text-white overflow-hidden">
         <!-- Background Image -->
@@ -125,6 +45,7 @@
                             allowfullscreen>
                         </iframe>
                     </div>
+                </div>
 
                 <!-- Video Information -->
                 <div class="bg-white rounded-2xl p-8 shadow-lg mb-10 border border-gray-100">
@@ -173,11 +94,11 @@
                     <h3 class="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200">Video Lainnya</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <!-- Video 1 -->
-                        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group video-card">
                             <div class="relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Saraswati Fisika 2025" class="w-full h-48 object-cover group-hover:scale-110 transition duration-700">
+                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Saraswati Fisika 2025" class="w-full h-48 object-cover group-hover:scale-110 transition duration-700 video-thumbnail">
                                 <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                                    <div class="w-16 h-16 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center video-play-button cursor-pointer">
                                         <i class="fas fa-play text-white text-2xl"></i>
                                     </div>
                                 </div>
@@ -196,11 +117,11 @@
                         </div>
 
                         <!-- Video 2 -->
-                        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group video-card">
                             <div class="relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Workshop Python" class="w-full h-48 object-cover group-hover:scale-110 transition duration-700">
+                                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Workshop Python" class="w-full h-48 object-cover group-hover:scale-110 transition duration-700 video-thumbnail">
                                 <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                                    <div class="w-16 h-16 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center video-play-button cursor-pointer">
                                         <i class="fas fa-play text-white text-2xl"></i>
                                     </div>
                                 </div>
@@ -219,11 +140,11 @@
                         </div>
 
                         <!-- Video 3 -->
-                        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group video-card">
                             <div class="relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pelantikan Pengurus" class="w-full h-48 object-cover group-hover:scale-110 transition duration-700">
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pelantikan Pengurus" class="w-full h-48 object-cover group-hover:scale-110 transition duration-700 video-thumbnail">
                                 <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                                    <div class="w-16 h-16 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center video-play-button cursor-pointer">
                                         <i class="fas fa-play text-white text-2xl"></i>
                                     </div>
                                 </div>
@@ -336,150 +257,150 @@
         </div>
     </section>
 
-    @include('layout.footer')
-
     <!-- Tombol Back to Top -->
     <button id="backToTop" class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-blue-600 to-cyan-500 text-white rounded-full shadow-2xl hover:shadow-cyan-500/30 hover:scale-110 transition-all duration-300 z-40 hidden items-center justify-center text-2xl">
         <i class="fas fa-chevron-up"></i>
     </button>
+@endsection
 
-    <!-- Skrip JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const header = document.getElementById('mainHeader');
-            const menuBtn = document.getElementById('menuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const backToTopBtn = document.getElementById('backToTop');
-            
-            // Fungsi untuk update header berdasarkan scroll
-            function updateHeaderOnScroll() {
-                if (window.scrollY > 50) {
-                    // Saat di-scroll (lebih dari 50px)
-                    header.classList.remove('bg-transparent');
-                    header.classList.add('bg-white', 'shadow-lg', 'border-b', 'border-gray-200');
-                    
-                    // Update teks navigasi desktop
-                    const desktopLinks = document.querySelectorAll('nav.md\\:flex a');
-                    desktopLinks.forEach(link => {
-                        if (link.getAttribute('href') === 'video.html') {
-                            link.classList.remove('text-white', 'border-cyan-300');
-                            link.classList.add('text-blue-600', 'border-blue-600');
-                        } else {
-                            link.classList.remove('text-white/90', 'hover:text-white');
-                            link.classList.add('text-gray-600', 'hover:text-blue-600');
-                        }
-                    });
-                    
-                    // Update tombol masuk
-                    const masukBtn = document.querySelector('nav.md\\:flex a:last-child');
-                    if (masukBtn) {
-                        masukBtn.classList.remove('from-cyan-500', 'to-blue-500', 'shadow-cyan-500/30');
-                        masukBtn.classList.add('from-blue-600', 'to-cyan-500');
-                    }
-                    
-                    // Update tombol mobile menu
-                    if (menuBtn) {
-                        menuBtn.classList.remove('text-white');
-                        menuBtn.classList.add('text-gray-700');
-                    }
-                    
-                } else {
-                    // Saat di atas (posisi awal)
-                    header.classList.add('bg-transparent');
-                    header.classList.remove('bg-white', 'shadow-lg', 'border-b', 'border-gray-200');
-                    
-                    // Update teks navigasi desktop
-                    const desktopLinks = document.querySelectorAll('nav.md\\:flex a');
-                    desktopLinks.forEach(link => {
-                        if (link.getAttribute('href') === 'video.html') {
-                            link.classList.add('text-white', 'border-cyan-300');
-                            link.classList.remove('text-blue-600', 'border-blue-600');
-                        } else {
-                            link.classList.add('text-white/90', 'hover:text-white');
-                            link.classList.remove('text-gray-600', 'hover:text-blue-600');
-                        }
-                    });
-                    
-                    // Update tombol masuk
-                    const masukBtn = document.querySelector('nav.md\\:flex a:last-child');
-                    if (masukBtn) {
-                        masukBtn.classList.add('from-cyan-500', 'to-blue-500', 'shadow-cyan-500/30');
-                        masukBtn.classList.remove('from-blue-600', 'to-cyan-500');
-                    }
-                    
-                    // Update tombol mobile menu
-                    if (menuBtn) {
-                        menuBtn.classList.add('text-white');
-                        menuBtn.classList.remove('text-gray-700');
-                    }
-                }
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const header = document.getElementById('mainHeader');
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        // Fungsi untuk update header berdasarkan scroll
+        function updateHeaderOnScroll() {
+            if (window.scrollY > 50) {
+                // Saat di-scroll (lebih dari 50px)
+                header.classList.remove('bg-transparent');
+                header.classList.add('bg-white', 'shadow-lg', 'border-b', 'border-gray-200');
                 
-                // Back to Top Button visibility
-                if (window.scrollY > 300) {
-                    backToTopBtn.classList.remove('hidden');
-                    backToTopBtn.classList.add('flex');
-                } else {
-                    backToTopBtn.classList.add('hidden');
-                    backToTopBtn.classList.remove('flex');
-                }
-            }
-            
-            // Toggle Mobile Menu
-            if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mobileMenu.classList.toggle('hidden');
-                    const icon = menuBtn.querySelector('i');
-                    if (mobileMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
+                // Update teks navigasi desktop
+                const desktopLinks = document.querySelectorAll('nav.md\\:flex a');
+                desktopLinks.forEach(link => {
+                    if (link.getAttribute('href') === '{{ route("profile.video") }}' || 
+                        link.textContent.includes('Video')) {
+                        link.classList.remove('text-white', 'border-cyan-300');
+                        link.classList.add('text-blue-600', 'border-blue-600');
                     } else {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
+                        link.classList.remove('text-white/90', 'hover:text-white');
+                        link.classList.add('text-gray-600', 'hover:text-blue-600');
                     }
                 });
                 
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!mobileMenu.classList.contains('hidden') && 
-                        !mobileMenu.contains(event.target) && 
-                        !menuBtn.contains(event.target)) {
-                        mobileMenu.classList.add('hidden');
-                        const icon = menuBtn.querySelector('i');
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
+                // Update tombol masuk
+                const masukBtn = document.querySelector('nav.md\\:flex a:last-child');
+                if (masukBtn) {
+                    masukBtn.classList.remove('from-cyan-500', 'to-blue-500', 'shadow-cyan-500/30');
+                    masukBtn.classList.add('from-blue-600', 'to-cyan-500');
+                }
+                
+                // Update tombol mobile menu
+                if (menuBtn) {
+                    menuBtn.classList.remove('text-white');
+                    menuBtn.classList.add('text-gray-700');
+                }
+                
+            } else {
+                // Saat di atas (posisi awal)
+                header.classList.add('bg-transparent');
+                header.classList.remove('bg-white', 'shadow-lg', 'border-b', 'border-gray-200');
+                
+                // Update teks navigasi desktop
+                const desktopLinks = document.querySelectorAll('nav.md\\:flex a');
+                desktopLinks.forEach(link => {
+                    if (link.getAttribute('href') === '{{ route("profile.video") }}' || 
+                        link.textContent.includes('Video')) {
+                        link.classList.add('text-white', 'border-cyan-300');
+                        link.classList.remove('text-blue-600', 'border-blue-600');
+                    } else {
+                        link.classList.add('text-white/90', 'hover:text-white');
+                        link.classList.remove('text-gray-600', 'hover:text-blue-600');
                     }
                 });
+                
+                // Update tombol masuk
+                const masukBtn = document.querySelector('nav.md\\:flex a:last-child');
+                if (masukBtn) {
+                    masukBtn.classList.add('from-cyan-500', 'to-blue-500', 'shadow-cyan-500/30');
+                    masukBtn.classList.remove('from-blue-600', 'to-cyan-500');
+                }
+                
+                // Update tombol mobile menu
+                if (menuBtn) {
+                    menuBtn.classList.add('text-white');
+                    menuBtn.classList.remove('text-gray-700');
+                }
             }
             
-            // Back to Top Button functionality
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Back to Top Button visibility
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('hidden');
+                backToTopBtn.classList.add('flex');
+            } else {
+                backToTopBtn.classList.add('hidden');
+                backToTopBtn.classList.remove('flex');
+            }
+        }
+        
+        // Toggle Mobile Menu
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+                const icon = menuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
             });
             
-            // Event listener untuk scroll
-            window.addEventListener('scroll', updateHeaderOnScroll);
-            
-            // Jalankan sekali saat load
-            updateHeaderOnScroll();
-            
-            // Video play button functionality
-            const playButtons = document.querySelectorAll('.video-play-button');
-            playButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const videoCard = this.closest('.video-card');
-                    const videoThumbnail = videoCard.querySelector('.video-thumbnail');
-                    const videoIframe = videoCard.querySelector('iframe');
-                    
-                    if (videoIframe) {
-                        // Ganti thumbnail dengan iframe aktif
-                        videoThumbnail.style.display = 'none';
-                        videoIframe.style.display = 'block';
-                        videoIframe.src += "&autoplay=1";
-                    }
-                });
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.classList.contains('hidden') && 
+                    !mobileMenu.contains(event.target) && 
+                    !menuBtn.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Back to Top Button functionality
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Event listener untuk scroll
+        window.addEventListener('scroll', updateHeaderOnScroll);
+        
+        // Jalankan sekali saat load
+        updateHeaderOnScroll();
+        
+        // Video play button functionality
+        const playButtons = document.querySelectorAll('.video-play-button');
+        playButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const videoCard = this.closest('.video-card');
+                const videoThumbnail = videoCard.querySelector('.video-thumbnail');
+                const videoIframe = videoCard.querySelector('iframe');
+                
+                if (videoIframe) {
+                    // Ganti thumbnail dengan iframe aktif
+                    videoThumbnail.style.display = 'none';
+                    videoIframe.style.display = 'block';
+                    videoIframe.src += "&autoplay=1";
+                }
             });
         });
-    </script>
-</body>
-</html>
+    });
+</script>
+@endpush
