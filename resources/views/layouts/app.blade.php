@@ -37,6 +37,13 @@
             height: 100%;
             border: 0;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom text shadow agar tulisan persis seperti di gambar (lebih terbaca) */
+        .text-shadow-strong {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     </style>
 </head>
 <body>
