@@ -4,11 +4,15 @@
     $mediumMembers = array_filter($data['members'], fn($member) => $member['size'] === 'medium');
 @endphp
 
-<div class="text-center max-w-4xl mx-auto mb-12">
-    <h1 class="text-3xl md:text-4xl font-bold text-{{ $color }} mb-6 tracking-wide">
-        {{ $data['title'] }}
-    </h1>
-    <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+<div class="flex flex-col items-center mb-16">
+    <div class="relative mb-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-black text-gray-900 uppercase tracking-tighter mb-2">
+            {{ $data['title'] }}
+        </h2>
+        <div class="h-1.5 w-24 bg-{{ $color }} mx-auto rounded-full"></div>
+    </div>
+    
+    <p class="text-gray-600 text-center max-w-4xl text-lg leading-relaxed">
         {{ $data['description'] }}
     </p>
 </div>

@@ -332,6 +332,8 @@ class FungsionarisController extends Controller
             ]
         ];
 
-        return view('pages.fungsionaris', $data);
-    }
-}
+        return view('pages.fungsionaris', [
+            'inti' => $data['inti'],
+            'bidang' => $data['bidang'],
+            'activePage' => 'divisi'
+        ]);}}

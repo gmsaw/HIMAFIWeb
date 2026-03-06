@@ -28,7 +28,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-3">Pengajuan Tanda Tangan</h3>
                     <p class="text-gray-600 mb-6">Layanan pengajuan tanda tangan digital untuk surat pengantar, proposal, dan dokumen administratif resmi lainnya dari pengurus HIMAFI.</p>
-                    <a href="/pengajuantte" class="text-green-600 font-semibold inline-flex items-center hover:text-green-800">
+                    <a href="/tte/ajukan" class="text-green-600 font-semibold inline-flex items-center hover:text-green-800">
                         Mulai Pengajuan <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
