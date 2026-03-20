@@ -34,8 +34,9 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <p class="text-xs text-slate-400 uppercase tracking-wide font-bold">Ditandatangani Oleh</p>
-                                <p class="text-slate-800 font-semibold">{{ $doc->signer_name }}</p>
-                                <p class="text-xs text-slate-500">Ketua Himpunan / Admin</p>
+                                <!-- <p class="text-slate-800 font-semibold">{{ $doc->signer_name }}</p> -->
+                                <p class="text-slate-800 font-semibold">Gede Mahendra Sastra Adhi Wiguna</p>
+                                <p class="text-xs text-slate-500">Ketua Himpunan</p>
                             </div>
                             <div>
                                 <p class="text-xs text-slate-400 uppercase tracking-wide font-bold">Waktu Penandatanganan</p>

@@ -19,6 +19,7 @@ use App\Http\Controllers\AdminInventoryController;
 use App\Http\Controllers\AdminFinanceController;
 use App\Http\Controllers\BukuBiruController;
 use App\Http\Controllers\ShortLinkController;
+use App\Http\Controllers\HilbertController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,13 @@ Route::prefix('perpustakaan')->name('library.')->group(function() {
 Route::get('/aspirasi', [AspirationController::class, 'index'])->name('aspirasi.index');
 Route::post('/aspirasi', [AspirationController::class, 'store'])->name('aspirasi.store');
 
+// Simulasi Fisika Public
+Route::prefix('simulasi')->name('simulasi.')->group(function() {
+    Route::get('/', [\App\Http\Controllers\SimulationController::class, 'index'])->name('index');
+    Route::get('/gerak-parabola', [\App\Http\Controllers\SimulationController::class, 'parabola'])->name('parabola');
+    Route::get('/ohm-kirchoff', [\App\Http\Controllers\SimulationController::class, 'ohmkirchoff'])->name('ohmkirchoff');
+});
+
 // TTE Public
 Route::prefix('tte')->name('tte.')->group(function() {
     Route::get('/ajukan', [TteController::class, 'create'])->name('create');
@@ -99,6 +107,24 @@ Route::middleware(['auth', 'role:mahasiswa,admin,sekretaris,bendahara'])->group(
     
     // Fitur Request TTE Buku Biru (Mahasiswa)
     Route::post('/buku-biru/{id}/request-tte', [BukuBiruController::class, 'requestTTE'])->name('buku-biru.request-tte');
+
+    // Ruang Hilbert (Study Space)
+    Route::prefix('ruang-hilbert')->name('hilbert.')->group(function() {
+        Route::get('/', [HilbertController::class, 'index'])->name('index');
+        Route::post('/save', [HilbertController::class, 'saveSession'])->name('save');
+    });
+
+    // Manajemen Formulir
+    Route::get('/manajemen-formulir', [App\Http\Controllers\FormBuilderController::class, 'index'])->name('form.index');
+    Route::get('/manajemen-formulir/{id}/responses', [App\Http\Controllers\FormBuilderController::class, 'responses'])->name('form.responses');
+    Route::get('/manajemen-formulir/{id}/download', [App\Http\Controllers\FormBuilderController::class, 'download'])->name('form.download');
+    Route::get('/manajemen-formulir/submission/{id}/pdf', [App\Http\Controllers\FormBuilderController::class, 'downloadPdf'])->name('form.download.pdf');
+    Route::get('/manajemen-formulir/{id}/pdf-all', [App\Http\Controllers\FormBuilderController::class, 'downloadAllPdf'])->name('form.download.pdf_all');
+    Route::delete('/manajemen-formulir/{id}', [App\Http\Controllers\FormBuilderController::class, 'destroy'])->name('form.destroy');
+
+    // Route Form Builder (Hanya untuk user yang login)
+    Route::get('/buat-formulir', [App\Http\Controllers\FormBuilderController::class, 'create'])->name('form.create');
+    Route::post('/buat-formulir', [App\Http\Controllers\FormBuilderController::class, 'store'])->name('form.store');
 });
 
 
@@ -226,6 +252,9 @@ Route::middleware(['auth', 'role:admin,sekretaris,bendahara,eksternal'])->prefix
     });
 
 });
+
+Route::get('/form/{slug}', [App\Http\Controllers\PublicFormController::class, 'show'])->name('form.show');
+Route::post('/form/{slug}', [App\Http\Controllers\PublicFormController::class, 'submit'])->name('form.submit');
 
 /*
 |--------------------------------------------------------------------------
