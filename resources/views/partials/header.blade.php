@@ -1,6 +1,6 @@
 @php
     // DAFTAR HALAMAN YANG HEADERNYA TRANSPARAN SAAT DI ATAS
-    $transparentPages = ['beranda', 'divisi', 'kegiatan', 'blog'];
+    $transparentPages = ['beranda', 'divisi', 'kegiatan', 'blog', "ceksurat"];
     
     // Cek apakah halaman aktif ada di dalam daftar tersebut
     $isTransparentDefault = in_array($activePage, $transparentPages);
@@ -94,7 +94,8 @@
     <div id="mobileMenuBackdrop" class="fixed inset-0 bg-slate-900/20 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-40 md:hidden"></div>
 
     <div id="mobileMenu" 
-         class="fixed top-0 right-0 h-screen w-[280px] bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-out z-50 md:hidden flex flex-col">
+         class="fixed top-0 right-0 w-[280px] bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-out z-50 md:hidden flex flex-col"
+         style="height: 100vh; height: 100dvh;">
         
         <div class="p-6 border-b border-gray-100 flex items-center justify-between">
             <span class="font-bold text-slate-800 text-lg">Menu</span>
@@ -110,7 +111,7 @@
             @endforeach
         </div>
 
-        <div class="p-6 border-t border-gray-100 bg-gray-50/50">
+        <div class="p-6 border-t border-gray-100 bg-gray-50/50" style="padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));">
             @guest
                 <a href="{{ route('login') }}" 
                    class="flex justify-center w-full py-3 rounded-xl bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30 active:scale-95 transition-all">

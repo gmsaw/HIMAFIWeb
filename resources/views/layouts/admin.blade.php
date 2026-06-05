@@ -35,7 +35,6 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     @stack('styles')
@@ -47,11 +46,12 @@
 <div id="sidebarBackdrop" 
      class="fixed inset-0 bg-slate-900/50 z-40 hidden transition-opacity opacity-0 md:hidden"></div>
 
-<div class="flex h-screen overflow-hidden">
+<div class="flex overflow-hidden" style="height: 100vh; height: 100dvh;">
 
     {{-- 2. SIDEBAR --}}
     <aside id="sidebar"
-        class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white flex flex-col transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:relative md:flex-shrink-0">
+        class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white flex flex-col transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:relative md:flex-shrink-0"
+        style="height: 100vh; height: 100dvh;">
 
         <div class="h-20 flex items-center px-6 border-b border-slate-700 justify-between md:justify-start">
             <div class="flex items-center gap-3">
@@ -131,6 +131,12 @@
 
                 {{-- SISA MENU ADMINISTRASI HANYA UNTUK ADMIN & SEKRE --}}
                 @if(in_array(Auth::user()->role, ['admin', 'sekretaris']))
+                    {{-- ORBIT (Arsip Surat) --}}
+                    <a href="{{ route('admin.orbit.index') }}" class="flex items-center gap-3 px-3 py-2.5 {{ request()->routeIs('admin.orbit.*') ? 'bg-blue-600/10 text-blue-400' : 'text-slate-300 hover:text-white hover:bg-slate-800' }} rounded-lg transition-all">
+                        <i class="fas fa-folder-open w-5 text-center"></i>
+                        <span class="font-medium">ORBIT (Arsip Surat)</span>
+                    </a>
+
                     {{-- Inventaris --}}
                     <a href="{{ route('admin.inventory.index') }}" class="flex items-center gap-3 px-3 py-3 {{ request()->routeIs('admin.inventory.*') ? 'bg-blue-600/10 text-blue-400' : 'text-slate-300 hover:text-white hover:bg-slate-800' }} rounded-lg transition-colors">
                         <i class="fas fa-boxes w-5 text-center"></i>
@@ -176,20 +182,19 @@
                     {{ request()->routeIs('admin.users.index') ? 'bg-blue-600/10 text-blue-400' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
                     <i class="fas fa-users-cog w-5 text-center"></i>
                     Manajemen User
-                    
-                    @php 
-                        $pendingUsers = \App\Models\User::where('is_approved', 0)->count(); 
-                    @endphp
-                    
-                    @if($pendingUsers > 0)
-                        <span class="ml-auto bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $pendingUsers }}</span>
-                    @endif
+                </a>
+
+                {{-- MENU MANAJEMEN BACKUP --}}
+                <a href="{{ route('admin.backup.index') }}" 
+                class="flex items-center gap-3 px-3 py-3 rounded-lg {{ request()->routeIs('admin.backup.*') ? 'bg-emerald-600/10 text-emerald-400' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }} transition-all group mt-1">
+                    <i class="fas fa-database w-5 text-center"></i>
+                    <span class="font-medium">Manajemen Backup</span>
                 </a>
             @endif
 
         </nav>
 
-        <div class="p-4 border-t border-slate-700">
+        <div class="p-4 border-t border-slate-700" style="padding-bottom: calc(1rem + env(safe-area-inset-bottom));">
             <div class="flex items-center gap-3">
                 <img class="w-10 h-10 rounded-full"
                      src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=random">
@@ -224,7 +229,7 @@
             <p class="text-sm text-slate-500 hidden sm:block">{{ now()->translatedFormat('l, d F Y') }}</p>
         </header>
 
-        <div class="flex-1 overflow-y-auto p-6">
+        <div class="flex-1 overflow-y-auto p-6" style="padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));">
             @yield('content')
 
             <footer class="mt-12 text-center text-slate-400 text-sm">
@@ -261,6 +266,35 @@
         if(toggleBtn) toggleBtn.addEventListener('click', toggleSidebar);
         if(closeBtn) closeBtn.addEventListener('click', toggleSidebar);
         if(backdrop) backdrop.addEventListener('click', toggleSidebar);
+    });
+
+    document.addEventListener('submit', function(e) {
+        const form = e.target;
+
+        // Pastikan event berasal dari elemen form
+        if (form.tagName.toLowerCase() === 'form') {
+            // Abaikan form yang sengaja diizinkan double submit (jika ada)
+            if (form.classList.contains('allow-double')) return;
+
+            const submitButtons = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+
+            submitButtons.forEach(button => {
+                // Cek apakah form sudah valid sesuai atribut HTML5 (required, minlength, dll)
+                if (form.checkValidity()) {
+                    // Nonaktifkan tombol
+                    button.disabled = true;
+                    button.classList.add('opacity-75', 'cursor-not-allowed', 'pointer-events-none');
+                    
+                    // Ganti teks tombol menjadi status loading
+                    if (button.tagName.toLowerCase() === 'button') {
+                        if (!button.dataset.originalHtml) {
+                            button.dataset.originalHtml = button.innerHTML;
+                        }
+                        button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+                    }
+                }
+            });
+        }
     });
 </script>
 

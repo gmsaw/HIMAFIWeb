@@ -67,7 +67,29 @@
             </div>
             @endauth
 
-            {{-- Layanan 3: Peminjaman Inventaris --}}
+            {{-- Layanan 3: ORBIT (Sistem Verifikasi Surat) - DENGAN ANIMASI KHUSUS --}}
+            <div class="bg-gradient-to-br from-emerald-900 to-teal-900 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-emerald-700 group relative overflow-hidden">
+                {{-- Efek cahaya latar animasi --}}
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/20 blur-3xl rounded-full pointer-events-none group-hover:scale-150 transition-transform duration-700"></div>
+                <div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-50"></div>
+                
+                <div class="w-14 h-14 bg-emerald-800/50 border border-emerald-500/30 rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 group-hover:-rotate-3 transition duration-500 shadow-inner relative z-10">
+                    <i class="fas fa-file-shield text-2xl text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-3 flex items-center gap-2 relative z-10">
+                    ORBIT
+                    <span class="bg-emerald-500/20 text-emerald-300 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold border border-emerald-500/30 relative overflow-hidden">
+                        <span class="relative z-10">Baru</span>
+                        <span class="absolute inset-0 bg-white/20 animate-[ping_2s_ease-in-out_infinite]"></span>
+                    </span>
+                </h3>
+                <p class="text-emerald-100/70 mb-6 text-sm leading-relaxed relative z-10">Oprasional Registrasi Berkas & Informasi Terpadu. Sistem pintar untuk memverifikasi keaslian dan validitas dokumen atau surat resmi HIMAFI.</p>
+                <a href="/cek-surat" class="text-emerald-400 font-bold inline-flex items-center hover:text-emerald-300 transition-colors relative z-10 group-hover:translate-x-2 duration-300">
+                    Cek Keaslian Surat <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            {{-- Layanan 4: Peminjaman Inventaris --}}
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
                 <div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 transition duration-500">
                     <i class="fas fa-box-open text-2xl text-blue-600"></i>
@@ -79,7 +101,7 @@
                 </a>
             </div>
 
-            {{-- Layanan 4: Pengajuan TTE --}}
+            {{-- Layanan 5: Pengajuan TTE --}}
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
                 <div class="w-14 h-14 bg-gradient-to-br from-green-100 to-green-50 rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 transition duration-500">
                     <i class="fas fa-signature text-2xl text-green-600"></i>
@@ -91,7 +113,7 @@
                 </a>
             </div>
 
-            {{-- Layanan 5: Koperasi --}}
+            {{-- Layanan 6: Koperasi --}}
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
                 <div class="w-14 h-14 bg-gradient-to-br from-amber-100 to-amber-50 rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 transition duration-500">
                     <i class="fas fa-store text-2xl text-amber-600"></i>
@@ -103,7 +125,7 @@
                 </a>
             </div>
 
-            {{-- Layanan 6: Ruang Aspirasi --}}
+            {{-- Layanan 7: Ruang Aspirasi --}}
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
                 <div class="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 transition duration-500">
                     <i class="fas fa-comment-dots text-2xl text-purple-600"></i>
@@ -115,7 +137,7 @@
                 </a>
             </div>
 
-            {{-- Layanan 7: Pelatihan Online --}}
+            {{-- Layanan 8: Pelatihan Online --}}
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
                 <div class="w-14 h-14 bg-gradient-to-br from-red-100 to-red-50 rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 transition duration-500">
                     <i class="fas fa-laptop-code text-2xl text-red-600"></i>
@@ -127,7 +149,7 @@
                 </a>
             </div>
 
-            {{-- Layanan 8: Perpustakaan --}}
+            {{-- Layanan 9: Perpustakaan --}}
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
                 <div class="w-14 h-14 bg-gradient-to-br from-pink-100 to-pink-50 rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 transition duration-500">
                     <i class="fa-solid fa-book text-2xl text-pink-500"></i>  
@@ -139,7 +161,7 @@
                 </a>
             </div>
 
-            {{-- Layanan 9: Simulasi Fisika --}}
+            {{-- Layanan 10: Simulasi Fisika --}}
             <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 group">
                 <div class="w-14 h-14 bg-gradient-to-br from-cyan-100 to-cyan-50 rounded-xl mb-6 flex items-center justify-center group-hover:scale-110 transition duration-500">
                     <i class="fas fa-atom text-2xl text-cyan-600"></i>

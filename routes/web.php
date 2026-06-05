@@ -20,6 +20,9 @@ use App\Http\Controllers\AdminFinanceController;
 use App\Http\Controllers\BukuBiruController;
 use App\Http\Controllers\ShortLinkController;
 use App\Http\Controllers\HilbertController;
+use App\Http\Controllers\AdminOrbitController;
+use App\Http\Controllers\PublicOrbitController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +91,8 @@ Route::prefix('tte')->name('tte.')->group(function() {
     Route::get('/verify/{token}/download-qr', [TteController::class, 'downloadQr'])->name('download_qr');
 });
 
+// Rute Verifikasi Surat Publik
+Route::get('/cek-surat', [PublicOrbitController::class, 'verify'])->name('orbit.verify');
 
 /*
 |--------------------------------------------------------------------------
@@ -153,6 +158,16 @@ Route::middleware(['auth', 'role:admin,sekretaris,bendahara,eksternal'])->prefix
     // GROUP A: KHUSUS ADMIN (SUPER USER)
     // ---------------------------------------------------------------------
     Route::middleware(['role:admin'])->group(function() {
+        // Rute Manajemen Backup (Hanya Super Admin)
+        Route::prefix('backup')->name('backup.')->group(function () {
+            Route::get('/', [App\Http\Controllers\BackupController::class, 'index'])->name('index');
+            Route::post('/generate', [App\Http\Controllers\BackupController::class, 'generate'])->name('generate');
+            Route::get('/download/{filename}', [App\Http\Controllers\BackupController::class, 'download'])->name('download');
+            Route::delete('/destroy/{filename}', [App\Http\Controllers\BackupController::class, 'destroy'])->name('destroy');
+            
+            // RUTE RESET DATA WEBSITE
+            Route::post('/wipe-data', [App\Http\Controllers\BackupController::class, 'wipeData'])->name('wipe');
+        });
         
         // Manajemen User
         Route::controller(DashboardController::class)->prefix('users')->name('users.')->group(function() {
@@ -235,6 +250,9 @@ Route::middleware(['auth', 'role:admin,sekretaris,bendahara,eksternal'])->prefix
             Route::put('/{id}', 'update')->name('update');
             Route::delete('/{id}', 'destroy')->name('destroy');
         });
+
+        // Rute ORBIT
+    Route::resource('orbit', AdminOrbitController::class)->except(['create', 'show', 'edit', 'update']);
     });
 
     // ---------------------------------------------------------------------
