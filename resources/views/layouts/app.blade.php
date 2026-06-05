@@ -66,6 +66,42 @@
         });
     </script>
 
+    <script>
+        document.addEventListener('submit', function(e) {
+            // Tangkap elemen form yang sedang disubmit
+            const form = e.target;
+
+            // Pastikan yang memicu event benar-benar sebuah tag <form>
+            if (form.tagName.toLowerCase() === 'form') {
+                
+                // Jangan halangi jika form memiliki class khusus 'allow-double' (opsional)
+                if (form.classList.contains('allow-double')) return;
+
+                // Cari semua tombol submit di dalam form tersebut
+                const submitButtons = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+
+                // Matikan (disable) semua tombol submit agar tidak bisa diklik lagi
+                submitButtons.forEach(button => {
+                    // Jangan nonaktifkan jika form belum lolos validasi HTML5 bawaan browser
+                    if (form.checkValidity()) {
+                        button.disabled = true;
+                        button.classList.add('opacity-75', 'cursor-not-allowed', 'pointer-events-none');
+                        
+                        // Jika elemennya berupa <button>, tambahkan efek loading
+                        if (button.tagName.toLowerCase() === 'button') {
+                            // Simpan teks asli jika suatu saat perlu dikembalikan
+                            if (!button.dataset.originalHtml) {
+                                button.dataset.originalHtml = button.innerHTML;
+                            }
+                            // Ganti teks dengan animasi spinner
+                            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
     @stack('scripts')
 </body>
 </html>
