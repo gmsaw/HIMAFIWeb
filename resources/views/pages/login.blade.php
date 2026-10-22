@@ -52,7 +52,7 @@
         <div class="hidden lg:flex lg:w-1/2 relative bg-slate-900 items-center justify-center overflow-hidden">
             <img src="/img/homeimg.png" alt="HIMAFI UNUD" class="absolute inset-0 w-full h-full object-cover opacity-50 scale-105 transition-transform duration-[20s] hover:scale-110">
             <div class="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-slate-900/50 to-slate-900/30 mix-blend-multiply"></div>
-            
+
             <div class="relative z-10 p-16 w-full max-w-2xl text-white flex flex-col justify-between h-full py-20">
                 <div>
                     <div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-8 border border-white/10 overflow-hidden shadow-lg">
@@ -74,7 +74,7 @@
         </div>
 
         <div class="w-full lg:w-1/2 flex items-center justify-center bg-white p-8 relative">
-            
+
             <a href="/" class="absolute top-8 left-8 flex items-center gap-2 text-slate-400 hover:text-blue-600 transition-all group z-20">
                 <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                     <i class="fas fa-arrow-left text-sm group-hover:-translate-x-1 transition-transform"></i>
@@ -83,7 +83,7 @@
             </a>
 
             <div class="w-full max-w-md animate-fade-in-up mt-10 lg:mt-0">
-                
+
                 <div class="mb-10 text-center lg:text-left">
                     <div class="inline-block lg:hidden mb-6 w-16 h-16 bg-white rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm overflow-hidden">
                          <img src="/img/logo.jpg" alt="Logo HIMAFI" class="w-full h-full object-cover">
@@ -92,9 +92,25 @@
                     <p class="text-slate-500">Masukan email dan kata sandi untuk melanjutkan.</p>
                 </div>
 
+                {{-- ALERT SUCCESS (misal dari reset password) --}}
+                @if (session('success'))
+                    <div class="flex items-start p-4 mb-5 text-sm text-green-800 rounded-lg bg-green-50 border border-green-100" role="alert">
+                        <i class="fas fa-check-circle mt-0.5 mr-3 flex-shrink-0"></i>
+                        <div>{{ session('success') }}</div>
+                    </div>
+                @endif
+
+                {{-- ALERT ERROR (misal dari forgot password) --}}
+                @if (session('error'))
+                    <div class="flex items-start p-4 mb-5 text-sm text-red-800 rounded-lg bg-red-50 border border-red-100 shake" role="alert">
+                        <i class="fas fa-exclamation-circle mt-0.5 mr-3 flex-shrink-0"></i>
+                        <div>{{ session('error') }}</div>
+                    </div>
+                @endif
+
                 <form method="POST" action="{{ route('login') }}" class="space-y-6">
-                    @csrf 
-                    
+                    @csrf
+
                     <div class="space-y-2">
                         <label for="email" class="text-sm font-semibold text-slate-700 ml-1">Email</label>
                         <div class="relative group">
@@ -110,7 +126,10 @@
                     <div class="space-y-2">
                         <div class="flex justify-between items-center ml-1">
                             <label for="password" class="text-sm font-semibold text-slate-700">Kata Sandi</label>
-                            <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500 transition-colors">Lupa sandi?</a>
+                            {{-- ✅ LINK LUPA PASSWORD --}}
+                            <a href="{{ route('password.request') }}" class="text-sm font-medium text-blue-600 hover:text-blue-500 transition-colors">
+                                Lupa sandi?
+                            </a>
                         </div>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -119,7 +138,7 @@
                             <input type="password" id="password" name="password"
                                 class="glass-input w-full pl-11 pr-12 py-3.5 rounded-xl outline-none text-slate-800 placeholder-slate-400 font-medium @error('password') border-red-500 @enderror"
                                 placeholder="••••••••" required autocomplete="current-password">
-                            
+
                             <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer focus:outline-none">
                                 <i class="far fa-eye"></i>
                             </button>
@@ -145,7 +164,7 @@
                     </div>
                     @endif
 
-                    <button type="submit" id="loginButton" 
+                    <button type="submit" id="loginButton"
                         class="w-full relative overflow-hidden bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all duration-300 transform active:scale-[0.98] shadow-lg shadow-slate-900/20 group">
                         <span class="relative z-10 flex items-center justify-center gap-2">
                             Masuk Sekarang <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
@@ -158,7 +177,7 @@
                 <p class="mt-8 text-center text-sm text-slate-500">
                 Belum punya akun? <a href="{{ route('register') }}" class="font-semibold text-blue-600 hover:text-blue-500 transition-colors">Daftar Sekarang</a>
                 </p>
-                
+
             </div>
         </div>
     </div>
@@ -172,7 +191,7 @@
             toggleBtn.addEventListener('click', function() {
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
-                
+
                 const icon = this.querySelector('i');
                 icon.className = type === 'password' ? 'far fa-eye' : 'far fa-eye-slash';
             });

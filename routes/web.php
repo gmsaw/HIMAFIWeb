@@ -32,12 +32,35 @@ use App\Http\Controllers\PublicOrbitController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Auth (Guest Only)
+// ============================================================
+// AUTH (Guest Only) — LOGIN, REGISTER, & FORGOT PASSWORD
+// ============================================================
 Route::middleware('guest')->group(function () {
+
+    // --- LOGIN ---
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+
+    // --- REGISTER ---
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
+
+    // --- FORGOT PASSWORD ---
+    // 1. Form input email
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])
+        ->name('password.request');
+
+    // 2. Kirim link reset ke email
+    Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])
+        ->name('password.email');
+
+    // 3. Form reset password (dari link di email)
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])
+        ->name('password.reset');
+
+    // 4. Proses reset password
+    Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+        ->name('password.update');
 });
 
 // Auth (Logout)
@@ -252,7 +275,7 @@ Route::middleware(['auth', 'role:admin,sekretaris,bendahara,eksternal'])->prefix
         });
 
         // Rute ORBIT
-    Route::resource('orbit', AdminOrbitController::class)->except(['create', 'show', 'edit', 'update']);
+        Route::resource('orbit', AdminOrbitController::class)->except(['create', 'show', 'edit', 'update']);
     });
 
     // ---------------------------------------------------------------------
@@ -270,6 +293,9 @@ Route::middleware(['auth', 'role:admin,sekretaris,bendahara,eksternal'])->prefix
     });
 
 });
+
+Route::post('/telegram/webhook', [\App\Http\Controllers\TelegramWebhookController::class, 'handle'])
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 
 Route::get('/form/{slug}', [App\Http\Controllers\PublicFormController::class, 'show'])->name('form.show');
 Route::post('/form/{slug}', [App\Http\Controllers\PublicFormController::class, 'submit'])->name('form.submit');
